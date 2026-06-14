@@ -5,7 +5,7 @@
 這個公開版本在原專案基礎上，主要新增與整理了以下內容：
 
 - 支援虎尾科技大學 NFU / ULEARN 登入與 TronClass/ULEARN 點名流程。
-- 新增登入頁驗證流程相容處理；登入時產生的暫存圖片與結果檔只會留在本機，不會被 Git 追蹤。
+- 解決登入時遇到圖片文字驗證碼的問題；登入時產生的暫存圖片與結果檔只會留在本機，不會被 Git 追蹤。
 - 新增 Windows 一鍵啟動腳本：`start-rollcall.bat` 與 `reset-cookie-and-start.bat`。
 - 啟動腳本會自動尋找本機 Python 並補裝必要套件，不要求使用者另外建立虛擬環境。
 - 第一次執行會自動建立空白 `config.conf`、`config.advanced.toml`、`state/`、`log/`；使用者只要填入自己的帳號密碼即可。
