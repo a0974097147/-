@@ -69,13 +69,13 @@ class ProviderConfigTest(unittest.TestCase):
     def test_supported_provider_registry_hides_fju_by_default(self) -> None:
         self.assertEqual(
             [provider.key for provider in list_supported_providers()],
-            ["scu", "thu", "tku", "tronclass"],
+            ["nfu", "scu", "thu", "tku", "tronclass"],
         )
         self.assertEqual(
             [provider.key for provider in list_supported_providers(include_hidden=True)],
-            ["fju", "scu", "thu", "tku", "tronclass"],
+            ["fju", "nfu", "scu", "thu", "tku", "tronclass"],
         )
-        self.assertEqual([provider.key for provider in list_all_providers()], ["fju", "scu", "thu", "tku", "tronclass"])
+        self.assertEqual([provider.key for provider in list_all_providers()], ["fju", "nfu", "scu", "thu", "tku", "tronclass"])
 
     def test_tronclass_api_endpoint_builder_is_shared(self) -> None:
         endpoints = tronclass_api_endpoints("https://school.example/")
@@ -116,10 +116,10 @@ class ProviderConfigTest(unittest.TestCase):
         self.assertEqual(normalized["available"]["fju"]["notes"], "lab only")
 
     def test_unknown_provider_falls_back_with_warning_metadata(self) -> None:
-        normalized = normalize_provider_config({"current": "nfu"})
+        normalized = normalize_provider_config({"current": "unknown-school"})
 
         self.assertEqual(normalized["current"], DEFAULT_PROVIDER)
-        self.assertEqual(normalized["requested"], "nfu")
+        self.assertEqual(normalized["requested"], "unknown-school")
         self.assertEqual(normalized["fallback_reason"], "unknown_provider")
 
     def test_provider_support_report_marks_fju_tku_tronclass_daily_ready_without_experimental_gate(self) -> None:

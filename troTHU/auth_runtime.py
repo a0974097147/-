@@ -532,13 +532,14 @@ async def login(session: ctx.aiohttp.ClientSession, *, research_context: bool=Fa
                 captcha_code = ""
                 if ctx.login_form_requires_captcha(form):
                     form = await client.prepare_login_form(form, captcha_code=captcha_code)
-                    save_login_captcha_image(getattr(form, 'captcha_image', ''))
+                    captcha_path = save_login_captcha_image(getattr(form, 'captcha_image', ''))
+                    if captcha_path:
+                        captcha_code = ctx.normalize_text(recognize_captcha_image(captcha_path))
                     
                     if captcha_code:
                         ctx.log(event='login_captcha', status='filled', message='Login captcha code was provided by environment.')
                     else:
                         ctx.log(event='login_captcha', status='challenge_fetched', message='Login captcha challenge was fetched, but no captcha code was provided.')
-                captcha_code = ctx.normalize_text(recognize_captcha_image(ctx.BASE_DIR / "login-captcha.png"))
                 outcome = await client.submit_login(form, user, passwd, captcha_code=captcha_code)
             except ctx.LoginPageChangedError as exc:
                 if ctx.should_try_browser_assisted_login():
