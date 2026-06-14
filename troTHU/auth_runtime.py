@@ -15,12 +15,6 @@ def recognize_captcha_image(image_path):
     result = ocr.classification(image)
     return result
 
-def read_value_from_file(path):
-    try:
-        return Path(path).read_text(encoding="utf-8").strip()
-    except OSError:
-        return ""
-
 def __getattr__(name: str):
     return getattr(ctx, name)
 
@@ -538,7 +532,7 @@ async def login(session: ctx.aiohttp.ClientSession, *, research_context: bool=Fa
                 captcha_code = ""
                 if ctx.login_form_requires_captcha(form):
                     form = await client.prepare_login_form(form, captcha_code=captcha_code)
-                    captcha_path = save_login_captcha_image(getattr(form, 'captcha_image', ''))
+                    save_login_captcha_image(getattr(form, 'captcha_image', ''))
                     
                     if captcha_code:
                         ctx.log(event='login_captcha', status='filled', message='Login captcha code was provided by environment.')
