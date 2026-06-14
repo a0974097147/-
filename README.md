@@ -1,6 +1,18 @@
 # Auto-Rollcall-thu-Tronclass
 
-**TronClass 校園點名系統的全自動點名工具｜支援東海 (THU)「iLearn」、淡江 (TKU)「iClass」、東吳 (SCU)「TronClass」**
+## 本版本新增功能
+
+這個公開版本在原專案基礎上，主要新增與整理了以下內容：
+
+- 支援虎尾科技大學 NFU / ULEARN 登入與 TronClass/ULEARN 點名流程。
+- 新增登入頁驗證流程相容處理；登入時產生的暫存圖片與結果檔只會留在本機，不會被 Git 追蹤。
+- 新增 Windows 一鍵啟動腳本：`start-rollcall.bat` 與 `reset-cookie-and-start.bat`。
+- 啟動腳本會自動尋找本機 Python 並補裝必要套件，不要求使用者另外建立虛擬環境。
+- 第一次執行會自動建立空白 `config.conf`、`config.advanced.toml`、`state/`、`log/`；使用者只要填入自己的帳號密碼即可。
+- 清理本機 Discord 啟動/同步腳本；公開版不包含個人 Discord token、伺服器 ID、頻道 ID、cookie 或快取資料。
+- 更新專案授權標示為 `AGPL-3.0-or-later`，並保留原專案來源與 MIT notice。
+
+**TronClass 校園點名系統的全自動點名工具｜支援虎尾科技大學 (NFU)「ULEARN」、東海 (THU)「iLearn」、淡江 (TKU)「iClass」、東吳 (SCU)「TronClass」**
 
 登入學校帳號後，它會在你設定的上課時段自動盯著課程，一偵測到點名就替你完成簽到——你不用一直盯著手機，也不用手忙腳亂找點名碼。
 
@@ -398,4 +410,3 @@ This project is a fork of [silvercow002/tronclass-script](https://github.com/sil
 - Original MIT notice: `Copyright (c) 2025 silvercow02`
 
 Auto-Rollcall-thu-Tronclass keeps this original MIT notice and currently publishes the modified project under GNU Affero General Public License v3.0 or later (`AGPL-3.0-or-later`). The original MIT License notice is preserved at the bottom of the [LICENSE](LICENSE) file.
-
