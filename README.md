@@ -3,7 +3,7 @@
 ## 本版本新增功能
 
 這個公開版本在原專案基礎上，主要新增與整理了以下內容：
-
+快速啟動:下載點擊start-rollcall.bat -->跳config.conf視窗-->輸入帳密學校(now可不填)-->儲存關閉config.conf視窗-->成功!
 - 支援虎尾科技大學 NFU / ULEARN 登入與 TronClass/ULEARN 點名流程。
 - 解決登入時遇到圖片文字驗證碼的問題；登入時產生的暫存圖片與結果檔只會留在本機，不會被 Git 追蹤。
 - 新增 Windows 一鍵啟動腳本：`start-rollcall.bat` 與 `reset-cookie-and-start.bat`。
